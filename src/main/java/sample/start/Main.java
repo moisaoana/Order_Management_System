@@ -42,16 +42,19 @@ public class Main extends Application {
         ProductsWindow controllerProduct = loader.getController();
         Scene menuScene = new Scene(rootMenu, 480, 500);
         Scene clientScene = new Scene(rootClient, 650, 500);
-        Scene productScene=new Scene(rootProduct,650,500);
+        Scene productScene=new Scene(rootProduct,800,500);
+
         controllerMenu.setClientScene(clientScene);
         controllerMenu.setProductScene(productScene);
         controllerMenu.setMain(this);
+
         controllerClient.setMenuScene(menuScene);
         controllerClient.setProductScene(productScene);
         controllerClient.setMain(this);
+
         controllerProduct.setMenuScene(menuScene);
         controllerProduct.setClientScene(clientScene);
-        controllerClient.setMain(this);
+        controllerProduct.setMain(this);
         window.setScene(menuScene);
         window.setTitle("Order Management");
         window.show();

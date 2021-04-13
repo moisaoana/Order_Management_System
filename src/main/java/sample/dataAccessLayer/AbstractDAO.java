@@ -147,7 +147,7 @@ public class AbstractDAO <T>{
     public void updateElement(T element){
         Connection connection = null;
         PreparedStatement updateStatement = null;
-        String query=createUpdateQuery("ID");
+        String query=createUpdateQuery("id");
         try {
             connection=ConnectionFactory.getConnection();
             updateStatement = connection.prepareStatement(query);

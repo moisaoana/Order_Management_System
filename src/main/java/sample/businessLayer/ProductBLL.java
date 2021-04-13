@@ -10,11 +10,7 @@ import java.util.NoSuchElementException;
 public class ProductBLL {
     public Product findProductById(int id) {
         ProductDAO productDAO=new ProductDAO();
-       Product product=productDAO.findById(id);
-        if (product == null) {
-            throw new NoSuchElementException("The product with id =" + id + " was not found!");
-        }
-        return product;
+        return productDAO.findById(id);
     }
     public int insertProduct(Product product){
         ProductDAO productDAO=new ProductDAO();
@@ -23,5 +19,13 @@ public class ProductBLL {
     public void deleteProduct(Product product){
         ProductDAO productDAO=new ProductDAO();
         productDAO.deleteElement(product.getID());
+    }
+    public Product findProductByName(String name) {
+        ProductDAO productDAO=new ProductDAO();
+        return productDAO.findByName(name);
+    }
+    public  void  updateProduct(Product product){
+        ProductDAO productDAO=new ProductDAO();
+        productDAO.updateElement(product);
     }
 }

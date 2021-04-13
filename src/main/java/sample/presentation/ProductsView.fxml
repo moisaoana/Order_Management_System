@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.presentation.ProductsWindow"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="479.0" prefWidth="811.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.presentation.ProductsWindow">
+   <children>
+      <Label fx:id="titleLabel" layoutX="169.0" layoutY="14.0" prefHeight="39.0" prefWidth="262.0" style="-fx-text-fill: cornflowerblue;" text="Products Operations">
+         <font>
+            <Font name="Berlin Sans FB" size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="addLabel" layoutX="20.0" layoutY="63.0" style="-fx-text-fill: orangered;" text="Add New Product">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="addNameTextField" layoutX="14.0" layoutY="87.0" prefHeight="25.0" prefWidth="154.0" promptText="Insert name" />
+      <TextField fx:id="addBrandTextField" layoutX="170.0" layoutY="87.0" prefHeight="25.0" prefWidth="154.0" promptText="Insert brand" />
+      <TextField fx:id="addPriceTextField" layoutX="496.0" layoutY="87.0" prefHeight="25.0" prefWidth="74.0" promptText="Insert price" />
+      <TextField fx:id="addQuantityTextField" layoutX="580.0" layoutY="87.0" prefHeight="25.0" prefWidth="92.0" promptText="Insert quantity" />
+      <Button fx:id="addButton" layoutX="690.0" layoutY="87.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: orangered;" text="Add product" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="addTypeTextField" layoutX="328.0" layoutY="87.0" prefHeight="25.0" prefWidth="154.0" promptText="Insert type" />
+      <Label fx:id="deleteLabel" layoutX="20.0" layoutY="128.0" style="-fx-text-fill: orangered;" text="Delete Product">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="deleteNameTextField" layoutX="22.0" layoutY="160.0" prefHeight="25.0" prefWidth="224.0" promptText="Insert name of product to be deleted" />
+      <Button fx:id="deleteButton" layoutX="256.0" layoutY="160.0" mnemonicParsing="false" onAction="#clickDeleteButton" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: orangered;" text="Delete product" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="updateLabel" layoutX="24.0" layoutY="200.0" style="-fx-text-fill: orangered;" text="Update Product">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="updateIdTextField" layoutX="24.0" layoutY="233.0" prefHeight="25.0" prefWidth="53.0" promptText="old ID" />
+      <TextField fx:id="updateNameTextField" layoutX="85.0" layoutY="233.0" prefHeight="25.0" prefWidth="136.0" promptText="Insert new name" />
+      <TextField fx:id="updateBrandTextField" layoutX="223.0" layoutY="233.0" prefHeight="25.0" prefWidth="154.0" promptText="Insert new brand" />
+      <TextField fx:id="updateTypeTextField" layoutX="380.0" layoutY="233.0" prefHeight="25.0" prefWidth="103.0" promptText="Insert new type" />
+      <TextField fx:id="updatePriceTextField" layoutX="483.0" layoutY="233.0" prefHeight="25.0" prefWidth="103.0" promptText="Insert new price" />
+      <TextField fx:id="updateQuantityTextField" layoutX="586.0" layoutY="233.0" prefHeight="25.0" prefWidth="121.0" promptText="Insert new quantity" />
+      <Button fx:id="showClientButton" layoutX="278.0" layoutY="274.0" mnemonicParsing="false" onAction="#clickShowClient" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: orangered;" text="Show product" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="updateButton" layoutX="443.0" layoutY="274.0" mnemonicParsing="false" onAction="#clickUpdateButton" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: orangered;" text="Update product" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="findLabel" layoutX="19.0" layoutY="306.0" style="-fx-text-fill: orangered;" text="Find Product By ID">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="findIdTextField" layoutX="24.0" layoutY="330.0" prefHeight="25.0" prefWidth="53.0" promptText="ID" />
+      <Button fx:id="findButton" layoutX="117.0" layoutY="330.0" mnemonicParsing="false" onAction="#clickFindButton" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: orangered;" text="Find product" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="findNameTextField" editable="false" layoutX="24.0" layoutY="365.0" prefHeight="25.0" prefWidth="142.0" promptText="Name" />
+      <TextField fx:id="findBrandTextField" editable="false" layoutX="175.0" layoutY="365.0" prefHeight="25.0" prefWidth="142.0" promptText="Brand" />
+      <TextField fx:id="findTypeTextField" editable="false" layoutX="326.0" layoutY="365.0" prefHeight="25.0" prefWidth="103.0" promptText="Type" />
+      <TextField fx:id="findPriceTextField" editable="false" layoutX="432.0" layoutY="365.0" prefHeight="25.0" prefWidth="74.0" promptText="Price" />
+      <TextField fx:id="findQuantityTextField" editable="false" layoutX="513.0" layoutY="365.0" prefHeight="25.0" prefWidth="84.0" promptText="Quantity" />
+      <Label fx:id="viewLabel" layoutX="15.0" layoutY="403.0" style="-fx-text-fill: orangered;" text="View all products">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewButton" layoutX="24.0" layoutY="427.0" mnemonicParsing="false" onAction="#clickViewButton" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: orangered;" text="View products" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="533.0" layoutY="439.0" mnemonicParsing="false" onAction="#clickBackButton" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: cornflowerblue;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="productNotFoundLabel" layoutX="260.0" layoutY="331.0" prefHeight="24.0" prefWidth="145.0" style="-fx-text-fill: cornflowerblue;" text="Product not found!" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="productNotFoundLabelDelete" layoutX="388.0" layoutY="161.0" prefHeight="24.0" prefWidth="145.0" style="-fx-text-fill: cornflowerblue;" text="Product not found!" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="productNotFoundLabelUpdate" layoutX="184.0" layoutY="200.0" prefHeight="24.0" prefWidth="145.0" style="-fx-text-fill: cornflowerblue;" text="Product not found!" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

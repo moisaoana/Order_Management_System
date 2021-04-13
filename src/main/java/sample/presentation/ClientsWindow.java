@@ -114,12 +114,16 @@ public class ClientsWindow extends Stage{
 
     @FXML
     void clickAddButton(ActionEvent event) { //validare email+ nume unic
+        if(addNameTextField.getText().isEmpty() ||addAddressTextField.getText().isEmpty() || addEmailTextField.getText().isEmpty()){
+            new EmptyTextFieldsErrorWindow();
+        }else{
         ClientBLL clientBLL=new ClientBLL();
         Client client=new Client(addNameTextField.getText(),addAddressTextField.getText(),addEmailTextField.getText());
         clientBLL.insertClient(client);
         addNameTextField.clear();
         addAddressTextField.clear();
         addEmailTextField.clear();
+        }
     }
     @FXML
     void clickDeleteButton(ActionEvent event) {
