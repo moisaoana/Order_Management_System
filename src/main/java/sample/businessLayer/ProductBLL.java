@@ -22,6 +22,6 @@ public class ProductBLL {
     }
     public void deleteProduct(Product product){
         ProductDAO productDAO=new ProductDAO();
-        productDAO.deleteElement(product.getName());
+        productDAO.deleteElement(product.getID());
     }
 }

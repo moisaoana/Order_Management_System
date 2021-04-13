@@ -13,14 +13,17 @@ import java.io.File;
 import java.net.URL;
 
 public class Controller {
-    private Scene scene2;
+    private Scene clientScene;
     private Main main;
-
+    private Scene productScene;
     public void setMain(Main main){
         this.main = main;
     }
-    public void setScene2(Scene scene2){
-        this.scene2 = scene2;
+    public void setClientScene(Scene scene){
+        this.clientScene = scene;
+    }
+    public void setProductScene(Scene scene){
+        this.productScene = scene;
     }
     @FXML
     private Label titleLabel;
@@ -36,7 +39,7 @@ public class Controller {
 
     @FXML
     void clickClients(ActionEvent event) {
-        main.setScene(scene2);
+        main.setScene(clientScene);
     }
 
     @FXML
@@ -46,7 +49,7 @@ public class Controller {
 
     @FXML
     void clickProducts(ActionEvent event) {
-
+        main.setScene(productScene);
     }
 
 }

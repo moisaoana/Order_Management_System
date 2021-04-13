@@ -85,7 +85,10 @@ public class AbstractDAO <T>{
             return createObjects(resultSet).get(0);
         } catch (SQLException throwables) {
           LOGGER.log(Level.WARNING,type.getName()+"find by id",throwables.getMessage());
-        }finally{
+        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
+            return null;
+        }
+        finally{
             ConnectionFactory.close(resultSet);
             ConnectionFactory.close(preparedStatement);
             ConnectionFactory.close(connection);
@@ -125,14 +128,14 @@ public class AbstractDAO <T>{
         }
         return insertedId;
     }
-    public void deleteElement(String name){
+    public void deleteElement(int id){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        String query=createDeleteQuery("name");
+        String query=createDeleteQuery("id");
         try{
             connection= ConnectionFactory.getConnection();
             preparedStatement=connection.prepareStatement(query);
-            preparedStatement.setString(1,name);
+            preparedStatement.setInt(1,id);
            preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             LOGGER.log(Level.WARNING,type.getName()+"delete",throwables.getMessage());
@@ -196,5 +199,28 @@ public class AbstractDAO <T>{
         }
         return listOfObjects;
 
+    }
+    public  T findByName(String name){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
+        String query=createSelectQuery("name");
+        try{
+            connection= ConnectionFactory.getConnection();
+            preparedStatement=connection.prepareStatement(query);
+            preparedStatement.setString(1,name);
+            resultSet=preparedStatement.executeQuery();
+            return createObjects(resultSet).get(0);
+        } catch (SQLException throwables) {
+            LOGGER.log(Level.WARNING,type.getName()+"find by name",throwables.getMessage());
+        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
+            return null;
+        }
+        finally{
+            ConnectionFactory.close(resultSet);
+            ConnectionFactory.close(preparedStatement);
+            ConnectionFactory.close(connection);
+        }
+        return null;
     }
 }

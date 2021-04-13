@@ -6,23 +6,96 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="406.0" prefWidth="539.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.presentation.ClientsWindow">
+<AnchorPane prefHeight="487.0" prefWidth="614.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.presentation.ClientsWindow">
    <children>
-      <Label fx:id="titleLabel" layoutX="154.0" layoutY="14.0" prefHeight="39.0" prefWidth="231.0" style="-fx-text-fill: cornflowerblue;" text="Clients Operations">
+      <Label fx:id="titleLabel" layoutX="178.0" layoutY="14.0" prefHeight="39.0" prefWidth="231.0" style="-fx-text-fill: cornflowerblue;" text="Clients Operations">
          <font>
             <Font name="Berlin Sans FB" size="29.0" />
          </font>
       </Label>
-      <Label fx:id="addLabel" layoutX="14.0" layoutY="76.0" style="-fx-text-fill: orangered;" text="Add New Client">
+      <Label fx:id="addLabel" layoutX="10.0" layoutY="53.0" style="-fx-text-fill: orangered;" text="Add New Client">
          <font>
             <Font name="Berlin Sans FB Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="addNameTextField" layoutX="10.0" layoutY="107.0" prefHeight="25.0" prefWidth="136.0" promptText="Insert name" />
-      <TextField fx:id="addAddressTextField" layoutX="157.0" layoutY="107.0" prefHeight="25.0" prefWidth="174.0" promptText="Insert address" />
-      <TextField fx:id="addEmailTextField" layoutX="346.0" layoutY="107.0" prefHeight="25.0" prefWidth="167.0" promptText="Insert email" />
-      <Button fx:id="addButton" layoutX="218.0" layoutY="143.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: orangered;" text="Add client" textFill="WHITE">
+      <TextField fx:id="addNameTextField" layoutX="14.0" layoutY="82.0" prefHeight="25.0" prefWidth="136.0" promptText="Insert name" />
+      <TextField fx:id="addAddressTextField" layoutX="159.0" layoutY="82.0" prefHeight="25.0" prefWidth="174.0" promptText="Insert address" />
+      <TextField fx:id="addEmailTextField" layoutX="344.0" layoutY="82.0" prefHeight="25.0" prefWidth="167.0" promptText="Insert email" />
+      <Button fx:id="addButton" layoutX="519.0" layoutY="82.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: orangered;" text="Add client" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="deleteLabel" layoutX="10.0" layoutY="118.0" style="-fx-text-fill: orangered;" text="Delete Client">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="deleteNameTextField" layoutX="12.0" layoutY="150.0" prefHeight="25.0" prefWidth="224.0" promptText="Insert name of client to be deleted" />
+      <Button fx:id="deleteButton" layoutX="246.0" layoutY="150.0" mnemonicParsing="false" onAction="#clickDeleteButton" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: orangered;" text="Delete client" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="updateLabel" layoutX="16.0" layoutY="196.0" style="-fx-text-fill: orangered;" text="Update Client">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="updateIdTextField" layoutX="16.0" layoutY="231.0" prefHeight="25.0" prefWidth="53.0" promptText="old ID" />
+      <TextField fx:id="updateNameTextField" layoutX="74.0" layoutY="231.0" prefHeight="25.0" prefWidth="136.0" promptText="Insert new name" />
+      <TextField fx:id="updateAddressTextField" layoutX="220.0" layoutY="231.0" prefHeight="25.0" prefWidth="174.0" promptText="Insert new address" />
+      <TextField fx:id="updateEmailTextField" layoutX="404.0" layoutY="231.0" prefHeight="25.0" prefWidth="182.0" promptText="Insert new email" />
+      <Button fx:id="updateButton" layoutX="307.0" layoutY="264.0" mnemonicParsing="false" onAction="#clickUpdateButton" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: orangered;" text="Update client" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="findLabel" layoutX="18.0" layoutY="308.0" style="-fx-text-fill: orangered;" text="Find Client By ID">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="findIdTextField" layoutX="16.0" layoutY="338.0" prefHeight="25.0" prefWidth="53.0" promptText="ID" />
+      <Button fx:id="findButton" layoutX="104.0" layoutY="338.0" mnemonicParsing="false" onAction="#clickFindButton" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: orangered;" text="Find client" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <TextField fx:id="findNameTextField" editable="false" layoutX="8.0" layoutY="375.0" prefHeight="25.0" prefWidth="158.0" promptText="Name" />
+      <TextField fx:id="findAddressTextField" editable="false" layoutX="188.0" layoutY="375.0" prefHeight="25.0" prefWidth="238.0" promptText="Address" />
+      <TextField fx:id="findEmailTextField" editable="false" layoutX="432.0" layoutY="375.0" prefHeight="25.0" prefWidth="174.0" promptText="Email" />
+      <Label fx:id="clientNotFoundLabel" layoutX="246.0" layoutY="339.0" prefHeight="24.0" prefWidth="145.0" style="-fx-text-fill: cornflowerblue;" text="Client not found!" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="clientNotFoundLabelUpdate" layoutX="148.0" layoutY="196.0" prefHeight="24.0" prefWidth="145.0" style="-fx-text-fill: cornflowerblue;" text="Client not found!" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="showClientButton" layoutX="103.0" layoutY="264.0" mnemonicParsing="false" onAction="#clickShowClient" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: orangered;" text="Show client" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="clientNotFoundLabelDelete" layoutX="130.0" layoutY="118.0" prefHeight="24.0" prefWidth="145.0" style="-fx-text-fill: cornflowerblue;" text="Client not found!" visible="false">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="viewLabel" layoutX="13.0" layoutY="411.0" style="-fx-text-fill: orangered;" text="View all clients">
+         <font>
+            <Font name="Berlin Sans FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewButton" layoutX="16.0" layoutY="435.0" mnemonicParsing="false" onAction="#clickViewButton" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: orangered;" text="View clients" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="373.0" layoutY="448.0" mnemonicParsing="false" onAction="#clickBackButton" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: cornflowerblue;" text="Back" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="13.0" />
          </font>

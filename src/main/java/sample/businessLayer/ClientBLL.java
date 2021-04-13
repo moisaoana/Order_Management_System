@@ -8,11 +8,7 @@ import java.util.NoSuchElementException;
 public class ClientBLL {
     public Client findClientById(int id) {
         ClientDAO clientDAO=new ClientDAO();
-        Client client = clientDAO.findById(id);
-        if (client == null) {
-            throw new NoSuchElementException("The client with id =" + id + " was not found!");
-        }
-        return client;
+        return clientDAO.findById(id);
     }
     public int insertClient(Client client){
         ClientDAO clientDAO=new ClientDAO();
@@ -20,10 +16,14 @@ public class ClientBLL {
     }
     public void deleteClient(Client client){
         ClientDAO clientDAO=new ClientDAO();
-        clientDAO.deleteElement(client.getName());
+        clientDAO.deleteElement(client.getID());
     }
     public  void  updateClient(Client client){
         ClientDAO clientDAO=new ClientDAO();
         clientDAO.updateElement(client);
+    }
+    public Client findClientByName(String name) {
+        ClientDAO clientDAO=new ClientDAO();
+        return clientDAO.findByName(name);
     }
 }
