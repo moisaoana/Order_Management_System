@@ -1,5 +1,9 @@
 package sample.dataAccessLayer;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import sample.connection.ConnectionFactory;
+
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -27,6 +31,14 @@ public class AbstractDAO <T>{
         stringBuilder.append(type.getSimpleName());
         stringBuilder.append(" WHERE "+ field+" =?");
         return stringBuilder.toString();
+    }
+    private String createSelectAllQuery(){
+        StringBuilder stringBuilder=new StringBuilder();
+        stringBuilder.append("SELECT ");
+        stringBuilder.append("* ");
+        stringBuilder.append("FROM ");
+        stringBuilder.append(type.getSimpleName());
+        return  stringBuilder.toString();
     }
     private String createInsertQuery(){
         StringBuilder stringBuilder=new StringBuilder();
@@ -223,4 +235,40 @@ public class AbstractDAO <T>{
         }
         return null;
     }
+    public List<T> findAll() {
+        List<T> list=new ArrayList<T>();
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
+        String query=createSelectAllQuery();
+        try{
+            connection= ConnectionFactory.getConnection();
+            preparedStatement=connection.prepareStatement(query);
+            resultSet=preparedStatement.executeQuery();
+            return createObjects(resultSet);
+        } catch (SQLException throwables) {
+            LOGGER.log(Level.WARNING,type.getName()+"find all",throwables.getMessage());
+        }catch(IndexOutOfBoundsException indexOutOfBoundsException){
+            return null;
+        }
+        finally{
+            ConnectionFactory.close(resultSet);
+            ConnectionFactory.close(preparedStatement);
+            ConnectionFactory.close(connection);
+        }
+        return null;
+
+    }
+    public void displayTable(TableView<T> tableView, List<T>list){
+        for( int i=0;i<type.getDeclaredFields().length;i++) {
+            Field field=type.getDeclaredFields()[i];
+            TableColumn column = new TableColumn(field.getName());
+            column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
+            tableView.getColumns().add(column);
+        }
+        for (T t : list) {
+            tableView.getItems().add(t);
+        }
+    }
+
 }

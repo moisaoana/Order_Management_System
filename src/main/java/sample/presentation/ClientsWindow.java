@@ -220,7 +220,7 @@ public class ClientsWindow extends Stage{
 
     @FXML
     void clickViewButton(ActionEvent event) {
-
+        new TableSceneClient();
     }
 
 }

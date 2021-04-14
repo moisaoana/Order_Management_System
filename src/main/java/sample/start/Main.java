@@ -21,7 +21,6 @@ import java.util.Random;
 
 public class Main extends Application {
     Stage window;
-    //Scene menuScene,clientScene;
     @Override
     public void start(Stage primaryStage) throws Exception{
         URL urlMenu=new File("src/main/java/sample/presentation/View.fxml").toURI().toURL();
@@ -32,6 +31,7 @@ public class Main extends Application {
         loader.setLocation(urlMenu);
         Parent rootMenu=loader.load();
         Controller controllerMenu = loader.getController();
+
         loader = new FXMLLoader();
         loader.setLocation(urlClient);
         Parent rootClient=loader.load();

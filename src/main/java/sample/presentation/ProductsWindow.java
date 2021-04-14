@@ -6,9 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sample.businessLayer.ClientBLL;
 import sample.businessLayer.ProductBLL;
-import sample.model.Client;
 import sample.model.Product;
 import sample.start.Main;
 
@@ -226,7 +224,7 @@ public class ProductsWindow {
 
     @FXML
     void clickViewButton(ActionEvent event) {
-
+       new TableSceneProduct();
     }
     private void displayProduct(Label productNotFoundLabel, TextField findIdTextField, TextField findNameTextField,TextField findPriceTextField,TextField findQuantityTextField,TextField findBrandTextField, TextField findTypeTextField){
         productNotFoundLabel.setVisible(false);
