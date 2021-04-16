@@ -126,7 +126,7 @@ public class ProductsWindow {
     @FXML
     void clickAddButton(ActionEvent event) {
         if(addNameTextField.getText().isEmpty() || addPriceTextField.getText().isEmpty() || addQuantityTextField.getText().isEmpty() || addBrandTextField.getText().isEmpty() || addTypeTextField.getText().isEmpty()){
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }else {
             ProductBLL productBLL = new ProductBLL();
             Product product = new Product(addNameTextField.getText(), Double.parseDouble(addPriceTextField.getText()), addBrandTextField.getText(), addTypeTextField.getText(),Integer.parseInt(addQuantityTextField.getText()));
@@ -149,7 +149,7 @@ public class ProductsWindow {
     void clickDeleteButton(ActionEvent event) {
         productNotFoundLabelDelete.setVisible(false);
         if(deleteNameTextField.getText().isEmpty()){
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }else{
             String name=deleteNameTextField.getText();
             ProductBLL productBLL=new ProductBLL();
@@ -201,7 +201,7 @@ public class ProductsWindow {
     void clickUpdateButton(ActionEvent event) {
         productNotFoundLabelUpdate.setVisible(false);
         if(updateIdTextField.getText().isEmpty() || updateNameTextField.getText().isEmpty() || updatePriceTextField.getText().isEmpty() || updateQuantityTextField.getText().isEmpty() || updateBrandTextField.getText().isEmpty() || updateTypeTextField.getText().isEmpty()){
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }else{
            ProductBLL productBLL=new ProductBLL();
             int id=Integer.parseInt(updateIdTextField.getText());
@@ -244,7 +244,7 @@ public class ProductsWindow {
             }
 
         }else{
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }
     }
 }

@@ -3,19 +3,10 @@ package sample.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import sample.businessLayer.ClientBLL;
 import sample.model.Client;
@@ -115,7 +106,7 @@ public class ClientsWindow extends Stage{
     @FXML
     void clickAddButton(ActionEvent event) { //validare email+ nume unic
         if(addNameTextField.getText().isEmpty() ||addAddressTextField.getText().isEmpty() || addEmailTextField.getText().isEmpty()){
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }else{
         ClientBLL clientBLL=new ClientBLL();
         Client client=new Client(addNameTextField.getText(),addAddressTextField.getText(),addEmailTextField.getText());
@@ -129,7 +120,7 @@ public class ClientsWindow extends Stage{
     void clickDeleteButton(ActionEvent event) {
         clientNotFoundLabelDelete.setVisible(false);
         if(deleteNameTextField.getText().isEmpty()){
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }else{
             String name=deleteNameTextField.getText();
             ClientBLL clientBLL=new ClientBLL();
@@ -163,7 +154,7 @@ public class ClientsWindow extends Stage{
             }
 
         }else{
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }
 
     }
@@ -185,7 +176,7 @@ public class ClientsWindow extends Stage{
                 clientNotFoundLabelUpdate.setVisible(true);
             }
         }else{
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }
     }
 
@@ -193,7 +184,7 @@ public class ClientsWindow extends Stage{
     void clickUpdateButton(ActionEvent event) { //verificare email + nume unic
         clientNotFoundLabelUpdate.setVisible(false);
         if(updateIdTextField.getText().isEmpty() || updateNameTextField.getText().isEmpty() || updateAddressTextField.getText().isEmpty() || updateEmailTextField.getText().isEmpty()){
-            new EmptyTextFieldsErrorWindow();
+            new ErrorWindow("Please fill all the required text fields!");
         }else{
             ClientBLL clientBLL=new ClientBLL();
             int id=Integer.parseInt(updateIdTextField.getText());

@@ -1,11 +1,11 @@
 package sample.businessLayer;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import sample.dataAccessLayer.ClientDAO;
 import sample.model.Client;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ClientBLL {
     private ClientDAO clientDAO=new ClientDAO();
@@ -24,8 +24,8 @@ public class ClientBLL {
     public Client findClientByName(String name) {
         return clientDAO.findByName(name);
     }
-    public void displayTable(TableView<Client> tableView, List<Client> list){
-        clientDAO.displayTable(tableView,list);
+    public void displayTable(TableView<Client> tableView, List<Client> list, ObservableList<Client> observableList){
+        clientDAO.displayTable(tableView,list,observableList);
     }
     public List<Client> findAll(){
         return clientDAO.findAll();

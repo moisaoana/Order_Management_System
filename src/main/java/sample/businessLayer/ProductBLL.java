@@ -1,14 +1,10 @@
 package sample.businessLayer;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
-import sample.dataAccessLayer.ClientDAO;
 import sample.dataAccessLayer.ProductDAO;
-import sample.model.Client;
 import sample.model.Product;
-
 import java.util.List;
-import java.util.NoSuchElementException;
-
 public class ProductBLL {
     private ProductDAO productDAO=new ProductDAO();
     public Product findProductById(int id) {
@@ -26,8 +22,8 @@ public class ProductBLL {
     public  void  updateProduct(Product product){
         productDAO.updateElement(product);
     }
-    public void displayTable(TableView<Product> tableView, List<Product> list){
-        productDAO.displayTable(tableView,list);
+    public void displayTable(TableView<Product> tableView, List<Product> list, ObservableList<Product> observableList){
+        productDAO.displayTable(tableView,list,observableList);
     }
     public List<Product> findAll(){
         return productDAO.findAll();

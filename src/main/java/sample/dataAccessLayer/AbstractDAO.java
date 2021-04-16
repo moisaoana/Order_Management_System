@@ -1,9 +1,9 @@
 package sample.dataAccessLayer;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.connection.ConnectionFactory;
-
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -123,15 +123,13 @@ public class AbstractDAO <T>{
                insertStatement.setObject(i,method.invoke(element));
             }
             insertStatement.executeUpdate();
-             rs = insertStatement.getGeneratedKeys();
+            rs = insertStatement.getGeneratedKeys();
             if (rs.next()) {
                 insertedId = rs.getInt(1);
             }
         } catch (SQLException | IntrospectionException e) {
             LOGGER.log(Level.WARNING, type.getName()+"insert",e.getMessage());
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         } finally {
             ConnectionFactory.close(rs);
@@ -175,18 +173,7 @@ public class AbstractDAO <T>{
             Method method=propertyDescriptor.getReadMethod();
             updateStatement.setObject(i,method.invoke(element));
             updateStatement.executeUpdate();
-
-        } catch (InvocationTargetException e) {
-            System.out.println("invocation");
-            e.printStackTrace();
-        } catch (IntrospectionException e) {
-            System.out.println("introspection");
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            System.out.println("sql");
-            throwables.printStackTrace();
-        } catch (IllegalAccessException e) {
-            System.out.println("illegal");
+        } catch (InvocationTargetException | IntrospectionException | SQLException | IllegalAccessException e) {
             e.printStackTrace();
         } finally {
             ConnectionFactory.close(updateStatement);
@@ -259,11 +246,13 @@ public class AbstractDAO <T>{
         return null;
 
     }
+    /*
     public void displayTable(TableView<T> tableView, List<T>list){
         for( int i=0;i<type.getDeclaredFields().length;i++) {
             Field field=type.getDeclaredFields()[i];
             TableColumn column = new TableColumn(field.getName());
             column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
+            column.setStyle("-fx-background-color: aliceblue;");
             tableView.getColumns().add(column);
         }
         for (T t : list) {
@@ -271,4 +260,18 @@ public class AbstractDAO <T>{
         }
     }
 
+     */
+    public void displayTable(TableView<T> tableView, List<T>list, ObservableList<T> observableList ){
+        for( int i=0;i<type.getDeclaredFields().length;i++) {
+            Field field=type.getDeclaredFields()[i];
+            TableColumn column = new TableColumn(field.getName());
+            column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
+            column.setStyle("-fx-background-color: aliceblue;");
+            tableView.getColumns().add(column);
+        }
+        for (T t : list) {
+            observableList.add(t);
+        }
+        tableView.setItems(observableList);
+    }
 }

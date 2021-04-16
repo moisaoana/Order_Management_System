@@ -44,7 +44,7 @@ public class Controller {
 
     @FXML
     void clickOrders(ActionEvent event) {
-
+        new OrdersWindow();
     }
 
     @FXML
