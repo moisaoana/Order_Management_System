@@ -15,8 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import sample.businessLayer.ClientBLL;
+import sample.businessLayer.OrderBLL;
 import sample.businessLayer.ProductBLL;
 import sample.model.Client;
+import sample.model.Orders;
 import sample.model.Product;
 
 import java.io.FileWriter;
@@ -33,6 +35,7 @@ public class OrdersWindow extends Stage {
     ObservableList<Product> chosenProductsObservableList = FXCollections.observableArrayList();
     ObservableList<Product> productsObservableList = FXCollections.observableArrayList();
     ObservableList<Client> clientsObservableList = FXCollections.observableArrayList();
+    List<Client> selectedCustomer=new ArrayList<>();
     boolean firstClient=true;
     int sum=0;
     public OrdersWindow() {
@@ -82,7 +85,6 @@ public class OrdersWindow extends Stage {
         gridPane.setHgap(5);
         gridPane.setVgap(10);
         displayTables();
-        List<Client> selectedCustomer=new ArrayList<>();
         addButtons(tableViewClient,selectedCustomer);
         rechooseClient.setOnAction((ActionEvent event) -> {
           firstClient=true;
@@ -123,6 +125,10 @@ public class OrdersWindow extends Stage {
         chosenProductsTable.setItems(chosenProductsObservableList);
         addButtonsProductRemove(chosenProductsTable);
     }
+    public void writeOrder(OrderBLL orderBLL,Product product, Client client, int quantity,int orderId){
+        Orders order=new Orders(orderId,client.getID(),product.getID(),quantity);
+        orderBLL.insertOrder(order);
+    }
     public void placeOrder(){
         if(chosenClientTextField.getText().isEmpty() || chosenProductsObservableList.isEmpty()){
             new ErrorWindow("Please choose a client and at least 1 product!");
@@ -133,7 +139,9 @@ public class OrdersWindow extends Stage {
                 fileWriter1.close();
                 FileWriter fileWriter = new FileWriter("bill.txt",true);
                 fileWriter.write("Client: "+chosenClientTextField.getText()+"\nProducts:\n");
-                for (int i = 0; i < chosenProductsObservableList.size()-1; i++) {
+                OrderBLL orderBLL=new OrderBLL();
+                int orderId=orderBLL.getNextOrderId();
+                for (int i = 0; i < chosenProductsObservableList.size(); i++) {
                     Product product1 = chosenProductsObservableList.get(i);
                     int q=1;
                     fileWriter.write(product1.getName());
@@ -146,12 +154,16 @@ public class OrdersWindow extends Stage {
                         }
                     }
                     fileWriter.write(" x "+q+", "+product1.getPrice()*q+" RON\n");
+                    writeOrder(orderBLL,product1,selectedCustomer.get(0),q,orderId);
                 }
                 fileWriter.write("Total: "+totalTextField.getText()+" RON");
                 fileWriter.close();
             }catch (IOException e) {
                 e.printStackTrace();
             }
+            chosenProductsObservableList.clear();
+            chosenClientTextField.clear();
+            selectedCustomer.clear();
             this.close();
         }
     }

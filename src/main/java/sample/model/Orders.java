@@ -1,22 +1,22 @@
 package sample.model;
 
-public class Order {
+public class Orders {
     private int id;
     private int orderId;
     private int clientId;
     private int productId;
     private int quantity;
-    public Order(){
+    public Orders(){
 
     }
-    public Order(int id, int orderId, int clientId,int productId,int quantity){
+    public Orders(int id, int orderId, int clientId, int productId, int quantity){
         this.id=id;
         this.orderId=orderId;
         this.clientId=clientId;
         this.productId=productId;
         this.quantity=quantity;
     }
-    public Order( int orderId, int clientId,int productId,int quantity){
+    public Orders(int orderId, int clientId, int productId, int quantity){
         this.orderId=orderId;
         this.clientId=clientId;
         this.productId=productId;

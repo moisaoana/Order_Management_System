@@ -128,7 +128,8 @@ public class AbstractDAO <T>{
                 insertedId = rs.getInt(1);
             }
         } catch (SQLException | IntrospectionException e) {
-            LOGGER.log(Level.WARNING, type.getName()+"insert",e.getMessage());
+            //LOGGER.log(Level.WARNING, type.getName()+"insert",e.getMessage());
+            System.out.println(e.getMessage());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         } finally {
@@ -228,13 +229,15 @@ public class AbstractDAO <T>{
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
         String query=createSelectAllQuery();
+        System.out.println(query);
         try{
             connection= ConnectionFactory.getConnection();
             preparedStatement=connection.prepareStatement(query);
             resultSet=preparedStatement.executeQuery();
             return createObjects(resultSet);
         } catch (SQLException throwables) {
-            LOGGER.log(Level.WARNING,type.getName()+"find all",throwables.getMessage());
+           // LOGGER.log(Level.WARNING,type.getName()+"find all",throwables.getMessage());
+            System.out.println(throwables.getMessage());
         }catch(IndexOutOfBoundsException indexOutOfBoundsException){
             return null;
         }
