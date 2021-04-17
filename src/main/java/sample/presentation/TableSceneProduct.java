@@ -19,7 +19,10 @@ public class TableSceneProduct extends Stage {
         List<Product> list=productBLL.findAll();
         productBLL.displayTable(tableView,list,observableList);
         Scene scene = new Scene(tableView);
+        this.setHeight(400);
+        this.setWidth(700);
         this.setScene(scene);
+        this.setTitle("Products");
         this.show();
     }
 }

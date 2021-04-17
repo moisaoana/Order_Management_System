@@ -29,7 +29,9 @@ public class AbstractDAO <T>{
         stringBuilder.append("* ");
         stringBuilder.append("FROM ");
         stringBuilder.append(type.getSimpleName());
-        stringBuilder.append(" WHERE "+ field+" =?");
+        stringBuilder.append(" WHERE ");
+        stringBuilder.append(field);
+        stringBuilder.append(" =?");
         return stringBuilder.toString();
     }
     private String createSelectAllQuery(){
@@ -65,7 +67,9 @@ public class AbstractDAO <T>{
         StringBuilder stringBuilder=new StringBuilder();
         stringBuilder.append("DELETE FROM ");
         stringBuilder.append(type.getSimpleName());
-        stringBuilder.append(" WHERE "+ field+"=?");
+        stringBuilder.append(" WHERE ");
+        stringBuilder.append(field);
+        stringBuilder.append("=?");
         return stringBuilder.toString();
     }
     public String createUpdateQuery(String field){
@@ -81,7 +85,9 @@ public class AbstractDAO <T>{
                 stringBuilder.append("? ");
             }
         }
-        stringBuilder.append("WHERE "+field+" = ? ");
+        stringBuilder.append("WHERE ");
+        stringBuilder.append(field);
+        stringBuilder.append(" = ? ");
         return stringBuilder.toString();
     }
     public  T findById(int id){
@@ -128,8 +134,7 @@ public class AbstractDAO <T>{
                 insertedId = rs.getInt(1);
             }
         } catch (SQLException | IntrospectionException e) {
-            //LOGGER.log(Level.WARNING, type.getName()+"insert",e.getMessage());
-            System.out.println(e.getMessage());
+            LOGGER.log(Level.WARNING, type.getName()+"insert",e.getMessage());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         } finally {
@@ -236,8 +241,7 @@ public class AbstractDAO <T>{
             resultSet=preparedStatement.executeQuery();
             return createObjects(resultSet);
         } catch (SQLException throwables) {
-           // LOGGER.log(Level.WARNING,type.getName()+"find all",throwables.getMessage());
-            System.out.println(throwables.getMessage());
+            LOGGER.log(Level.WARNING,type.getName()+"find all",throwables.getMessage());
         }catch(IndexOutOfBoundsException indexOutOfBoundsException){
             return null;
         }
@@ -249,21 +253,6 @@ public class AbstractDAO <T>{
         return null;
 
     }
-    /*
-    public void displayTable(TableView<T> tableView, List<T>list){
-        for( int i=0;i<type.getDeclaredFields().length;i++) {
-            Field field=type.getDeclaredFields()[i];
-            TableColumn column = new TableColumn(field.getName());
-            column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
-            column.setStyle("-fx-background-color: aliceblue;");
-            tableView.getColumns().add(column);
-        }
-        for (T t : list) {
-            tableView.getItems().add(t);
-        }
-    }
-
-     */
     public void displayTable(TableView<T> tableView, List<T>list, ObservableList<T> observableList ){
         for( int i=0;i<type.getDeclaredFields().length;i++) {
             Field field=type.getDeclaredFields()[i];

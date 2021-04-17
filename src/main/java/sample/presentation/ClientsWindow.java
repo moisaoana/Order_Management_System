@@ -104,16 +104,17 @@ public class ClientsWindow extends Stage{
     private Button backButton;
 
     @FXML
-    void clickAddButton(ActionEvent event) { //validare email+ nume unic
+    void clickAddButton(ActionEvent event) {
         if(addNameTextField.getText().isEmpty() ||addAddressTextField.getText().isEmpty() || addEmailTextField.getText().isEmpty()){
             new ErrorWindow("Please fill all the required text fields!");
         }else{
         ClientBLL clientBLL=new ClientBLL();
         Client client=new Client(addNameTextField.getText(),addAddressTextField.getText(),addEmailTextField.getText());
-        clientBLL.insertClient(client);
+        if(clientBLL.insertClient(client)!=-1){
         addNameTextField.clear();
         addAddressTextField.clear();
         addEmailTextField.clear();
+        }
         }
     }
     @FXML
@@ -181,7 +182,7 @@ public class ClientsWindow extends Stage{
     }
 
     @FXML
-    void clickUpdateButton(ActionEvent event) { //verificare email + nume unic
+    void clickUpdateButton(ActionEvent event) {
         clientNotFoundLabelUpdate.setVisible(false);
         if(updateIdTextField.getText().isEmpty() || updateNameTextField.getText().isEmpty() || updateAddressTextField.getText().isEmpty() || updateEmailTextField.getText().isEmpty()){
             new ErrorWindow("Please fill all the required text fields!");
@@ -196,11 +197,12 @@ public class ClientsWindow extends Stage{
                 String address=updateAddressTextField.getText();
                 String email=updateEmailTextField.getText();
                 Client client=new Client(id,name,address,email);
-                clientBLL.updateClient(client);
-                updateIdTextField.clear();
-                updateNameTextField.clear();
-                updateAddressTextField.clear();
-                updateEmailTextField.clear();
+                if(clientBLL.updateClient(client)!=-1) {
+                    updateIdTextField.clear();
+                    updateNameTextField.clear();
+                    updateAddressTextField.clear();
+                    updateEmailTextField.clear();
+                }
             }
         }
     }

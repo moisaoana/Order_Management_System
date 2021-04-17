@@ -96,6 +96,7 @@ public class OrdersWindow extends Stage {
         this.setHeight(600);
         this.setWidth(1200);
         Scene scene = new Scene(gridPane);
+        this.setTitle("Place an order!");
         this.setScene(scene);
         this.show();
     }
@@ -114,6 +115,7 @@ public class OrdersWindow extends Stage {
         ClientBLL clientBLL=new ClientBLL();
         List<Client>clients=clientBLL.findAll();
         clientBLL.displayTable(tableViewClient,clients,clientsObservableList);
+        chosenProductsTable.setPlaceholder(new Label("No products in your cart!"));
         TableColumn<Product,String> column = new TableColumn<>("Product");
         column.setCellValueFactory(new PropertyValueFactory<>("name"));
         chosenProductsTable.getColumns().add(column);

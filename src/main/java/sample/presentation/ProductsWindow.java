@@ -130,9 +130,10 @@ public class ProductsWindow {
         }else {
             ProductBLL productBLL = new ProductBLL();
             Product product = new Product(addNameTextField.getText(), Double.parseDouble(addPriceTextField.getText()), addBrandTextField.getText(), addTypeTextField.getText(),Integer.parseInt(addQuantityTextField.getText()));
-            productBLL.insertProduct(product);
-            addNameTextField.clear();
-            clearAllFieldsAdd();
+            if(productBLL.insertProduct(product)!=-1) {
+                addNameTextField.clear();
+                clearAllFieldsAdd();
+            }
         }
     }
 
@@ -215,9 +216,10 @@ public class ProductsWindow {
                 double price=Double.parseDouble(updatePriceTextField.getText());
                 int quantity=Integer.parseInt(updateQuantityTextField.getText());
                 Product product=new Product(id,name,price,brand,type,quantity);
-                productBLL.updateProduct(product);
-                clearAllFieldsUpdate();
-                updateIdTextField.clear();
+                if(productBLL.updateProduct(product)!=-1) {
+                    clearAllFieldsUpdate();
+                    updateIdTextField.clear();
+                }
             }
         }
     }
