@@ -15,10 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ *  This class defines the common operations for accessing a table from a database.
+ *  @author Moisa Oana Miruna
+ *  @version 1.0
+ *  @since 22.04.2021
+ * @param <T> the type of the object from the table that is accessed
+ */
 public class AbstractDAO <T>{
     protected static final Logger LOGGER=Logger.getLogger(AbstractDAO.class.getName());
     private final Class<T> type;
+    /**
+     * For each AbstractDAO object obtain the class of the generic type T
+     */
     @SuppressWarnings("unchecked")
     public AbstractDAO(){
         this.type=(Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
@@ -72,7 +81,7 @@ public class AbstractDAO <T>{
         stringBuilder.append("=?");
         return stringBuilder.toString();
     }
-    public String createUpdateQuery(String field){
+    private String createUpdateQuery(String field){
         StringBuilder stringBuilder=new StringBuilder();
         stringBuilder.append("UPDATE ");
         stringBuilder.append(type.getSimpleName());
@@ -90,6 +99,12 @@ public class AbstractDAO <T>{
         stringBuilder.append(" = ? ");
         return stringBuilder.toString();
     }
+
+    /**
+     * Method for finding an object from the table based on its id
+     * @param id an integer representing the id of the object
+     * @return the object of generic type T
+     */
     public  T findById(int id){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -113,6 +128,12 @@ public class AbstractDAO <T>{
         }
         return null;
     }
+
+    /**
+     * Method for inserting an object in a table from the database
+     * @param element an object of generic type T
+     * @return the id of the inserted element
+     */
     public int insertElement(T element){
         Connection connection = null;
         PreparedStatement insertStatement = null;
@@ -144,6 +165,11 @@ public class AbstractDAO <T>{
         }
         return insertedId;
     }
+
+    /**
+     * Method for deleting an element from a table from the database
+     * @param id an int representing the id of the element to be deleted
+     */
     public void deleteElement(int id){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -160,6 +186,11 @@ public class AbstractDAO <T>{
             ConnectionFactory.close(connection);
         }
     }
+
+    /**
+     * Method for updating the fields of an already existing object from the table in the database
+     * @param element an object of generic type T that we want to update
+     */
     public void updateElement(T element){
         Connection connection = null;
         PreparedStatement updateStatement = null;
@@ -186,6 +217,12 @@ public class AbstractDAO <T>{
             ConnectionFactory.close(connection);
         }
     }
+
+    /**
+     * Method that receives a result set and returns a list of objects
+     * @param resultSet an object of type ResultSet
+     * @return a list of objects of generic type T
+     */
     private List<T> createObjects(ResultSet resultSet){
         List<T> listOfObjects=new ArrayList<T>();
         try{
@@ -205,6 +242,12 @@ public class AbstractDAO <T>{
         return listOfObjects;
 
     }
+
+    /**
+     * Method that finds an element in the table based on its name
+     * @param name a String representing the name field of the object
+     * @return an object of generic type T
+     */
     public  T findByName(String name){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -228,6 +271,11 @@ public class AbstractDAO <T>{
         }
         return null;
     }
+
+    /**
+     * Method that returns all entries of a table from the database
+     * @return a list of object of generic type T
+     */
     public List<T> findAll() {
         List<T> list=new ArrayList<T>();
         Connection connection=null;
@@ -253,17 +301,22 @@ public class AbstractDAO <T>{
         return null;
 
     }
+
+    /**
+     * Method that receives a list of objects of type T and generates the header of the corresponding table and populates it
+     * @param tableView an object of type TableView that represents the resulting table
+     * @param list a list of objects of generic type T that we want to introduce in the table
+     * @param observableList the observable list of the tableView
+     */
     public void displayTable(TableView<T> tableView, List<T>list, ObservableList<T> observableList ){
         for( int i=0;i<type.getDeclaredFields().length;i++) {
             Field field=type.getDeclaredFields()[i];
-            TableColumn column = new TableColumn(field.getName());
+            TableColumn<T,Object> column = new TableColumn(field.getName());
             column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
             column.setStyle("-fx-background-color: aliceblue;");
             tableView.getColumns().add(column);
         }
-        for (T t : list) {
-            observableList.add(t);
-        }
+        observableList.addAll(list);
         tableView.setItems(observableList);
     }
 }

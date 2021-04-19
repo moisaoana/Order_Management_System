@@ -20,12 +20,16 @@ import sample.businessLayer.ProductBLL;
 import sample.model.Client;
 import sample.model.Orders;
 import sample.model.Product;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This UI class opens a window where the user can choose products and place an order
+ * @author Moisa Oana Miruna
+ * @version 1.0
+ * @since 22.04.2021
+ */
 public class OrdersWindow extends Stage {
     TableView<Product> tableViewProduct= new TableView<>();
     TableView<Client> tableViewClient= new TableView<>();
@@ -38,6 +42,9 @@ public class OrdersWindow extends Stage {
     List<Client> selectedCustomer=new ArrayList<>();
     boolean firstClient=true;
     int sum=0;
+    /**
+     * The constructor that initializes the window
+     */
     public OrdersWindow() {
         //Labels
         Text titleClient=new Text("--------------Choose client--------------");
@@ -127,10 +134,23 @@ public class OrdersWindow extends Stage {
         chosenProductsTable.setItems(chosenProductsObservableList);
         addButtonsProductRemove(chosenProductsTable);
     }
+
+    /**
+     * This method creates a new object of type Order and inserts it in the orders table in the database
+     * @param orderBLL an object of type OrderBll for performing the insert operation in the table
+     * @param product an object od type Product that represents the ordered product
+     * @param client an object of type Client that places the order
+     * @param quantity an int representing the quantity of the product ordered
+     * @param orderId an int representing the id of the order
+     */
     public void writeOrder(OrderBLL orderBLL,Product product, Client client, int quantity,int orderId){
         Orders order=new Orders(orderId,client.getID(),product.getID(),quantity);
         orderBLL.insertOrder(order);
     }
+
+    /**
+     * This method writes the bill of the order into a text file
+     */
     public void placeOrder(){
         if(chosenClientTextField.getText().isEmpty() || chosenProductsObservableList.isEmpty()){
             new ErrorWindow("Please choose a client and at least 1 product!");
@@ -169,6 +189,12 @@ public class OrdersWindow extends Stage {
             this.close();
         }
     }
+
+    /**
+     * This method adds a new column to the table of clients. The new column contains buttons for selecting a client from the table.
+     * @param tableView the tableView we want to add the new column to
+     * @param listOfSelectedObjects the list of selected customers updated in this method
+     */
     public void  addButtons(TableView<Client> tableView,List<Client>listOfSelectedObjects)
     {
         TableColumn<Client, Void> buttons = new TableColumn<>("Add");
@@ -204,6 +230,10 @@ public class OrdersWindow extends Stage {
         tableView.getColumns().add(buttons);
     }
 
+    /**
+     * This method adds a new column to the table of products. The new column contains buttons for selecting products from the table.
+     * @param tableView the tableview we want to add the new column to
+     */
     public void  addButtonsProductAdd(TableView<Product> tableView)
     {
         TableColumn<Product, Void> buttons = new TableColumn<>("Add");
@@ -246,6 +276,10 @@ public class OrdersWindow extends Stage {
         tableView.getColumns().add(buttons);
     }
 
+    /**
+     * This method adds a new column to a tableView. The new column contains buttons for removing the corresponding rows from the table.
+     * @param tableView the tableView we want to add the new column to
+     */
     public void  addButtonsProductRemove(TableView<Product> tableView)
     {
         TableColumn<Product, Void> buttons = new TableColumn<>("Remove");

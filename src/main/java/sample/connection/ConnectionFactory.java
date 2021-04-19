@@ -3,6 +3,12 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class assures the connection to the database
+ * @author Moisa Oana Miruna
+ * @version 1.0
+ * @since 22.04.2021
+ */
 public class ConnectionFactory {
     private static final Logger LOGGER =Logger.getLogger(ConnectionFactory.class.getName());
     private static final String DRIVER="com.mysql.cj.jdbc.Driver";
@@ -27,11 +33,17 @@ public class ConnectionFactory {
         }
         return connection;
     }
-
+    /**
+     * Method for getting an active connection
+     * @return an object of type Connection
+     */
     public static Connection getConnection() {
         return singleInstance.createConnection();
     }
-
+    /**
+     * This method closes the connection to the database
+     * @param connection parameter of type Connection (an active connection)
+     */
     public static void close(Connection connection) {
         if (connection != null) {
             try {
@@ -42,6 +54,10 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     * This method closes an existing statement
+     * @param statement parameter of type Statement (an existing statement)
+     */
     public static void close(Statement statement) {
         if (statement != null) {
             try {
@@ -52,6 +68,10 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     * This method closes the result set
+     * @param resultSet an existing result set
+     */
     public static void close(ResultSet resultSet) {
         if (resultSet != null) {
             try {

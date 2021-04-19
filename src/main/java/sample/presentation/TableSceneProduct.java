@@ -7,10 +7,17 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import sample.businessLayer.ProductBLL;
 import sample.model.Product;
-
 import java.util.List;
-
+/**
+ * This UI class opens a window that contains a TableView of all the products from the table in the database
+ * @author Moisa Oana Miruna
+ * @version 1.0
+ * @since 22.04.2021
+ */
 public class TableSceneProduct extends Stage {
+    /**
+     * The constructor that initializes the window
+     */
     public TableSceneProduct(){
         TableView<Product> tableView = new TableView<>();
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

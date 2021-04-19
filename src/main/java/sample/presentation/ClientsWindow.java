@@ -11,13 +11,31 @@ import javafx.stage.Stage;
 import sample.businessLayer.ClientBLL;
 import sample.model.Client;
 import sample.start.Main;
-
+/**
+ * This UI class opens a window with all operations that are possible to be performed on the Client Table from the database
+ * @author Moisa Oana Miruna
+ * @version 1.0
+ * @since 22.04.2021
+ */
 public class ClientsWindow extends Stage{
     private Scene menuScene;
     private Main main;
     private Scene productScene;
+    /**
+     * This method initializes the main for this class
+     * @param main an object of type Main
+     */
     public void setMain(Main main){this.main = main;}
+
+    /**
+     * This method initializes the menu scene
+     * @param scene1 the menu scene
+     */
     public void setMenuScene(Scene scene1){this.menuScene = scene1;}
+    /**
+     * This method initializes the product scene
+     * @param scene the product scene
+     */
     public void setProductScene(Scene scene){this.productScene = scene;}
     @FXML
     private Label titleLabel;
@@ -102,7 +120,10 @@ public class ClientsWindow extends Stage{
 
     @FXML
     private Button backButton;
-
+    /**
+     * This method adds a new client to the table in the database when the user clicks the "Add client" button and enters all the required information
+     * @param event an object of type ActionEvent
+     */
     @FXML
     void clickAddButton(ActionEvent event) {
         if(addNameTextField.getText().isEmpty() ||addAddressTextField.getText().isEmpty() || addEmailTextField.getText().isEmpty()){
@@ -117,6 +138,10 @@ public class ClientsWindow extends Stage{
         }
         }
     }
+    /**
+     * This method deletes a  client from the table in the database when the user clicks the "Delete client" button and enters the client's name
+     * @param event an object of type ActionEvent
+     */
     @FXML
     void clickDeleteButton(ActionEvent event) {
         clientNotFoundLabelDelete.setVisible(false);
@@ -136,6 +161,10 @@ public class ClientsWindow extends Stage{
         }
     }
 
+    /**
+     * This method finds an existing client from the table in the database when the user clicks the "Find client" button and enters the client's id. This method also displays the client's information in the corresponding text fields
+     * @param event an object of type ActionEvent
+     */
     @FXML
     void clickFindButton(ActionEvent event) { //done
         clientNotFoundLabel.setVisible(false);
@@ -159,6 +188,10 @@ public class ClientsWindow extends Stage{
         }
 
     }
+    /**
+     * This method finds an existing client from the table in the database when the user clicks the "Show client" button and enters the client's id. This method also displays the client's information in the corresponding text fields
+     * @param event an object of type ActionEvent
+     */
     @FXML
     void clickShowClient(ActionEvent event) { //done
         clientNotFoundLabelUpdate.setVisible(false);
@@ -180,7 +213,10 @@ public class ClientsWindow extends Stage{
             new ErrorWindow("Please fill all the required text fields!");
         }
     }
-
+    /**
+     * This method updates  an existing client from the table in the database when the user clicks the "Update client" button and enters the required information
+     * @param event an object of type ActionEvent
+     */
     @FXML
     void clickUpdateButton(ActionEvent event) {
         clientNotFoundLabelUpdate.setVisible(false);
@@ -206,11 +242,20 @@ public class ClientsWindow extends Stage{
             }
         }
     }
+
+    /**
+     * This method changes the main scene to the menu scene when the user clicks on the "Back" button
+     * @param event an object of type ActionEvent
+     */
     @FXML
     void clickBackButton(ActionEvent event) {
         main.setScene(menuScene);
     }
 
+    /**
+     * This method opens a new TableSceneClient window that displays the contents of the Client table
+     * @param event  an object of type ActionEvent
+     */
     @FXML
     void clickViewButton(ActionEvent event) {
         new TableSceneClient();
