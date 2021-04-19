@@ -27,7 +27,7 @@ public class TableSceneClient extends Stage {
        clientBLL.displayTable(tableView,list,observableList);
         Scene scene = new Scene(tableView);
         this.setHeight(400);
-        this.setWidth(700);
+        this.setWidth(1000);
         this.setScene(scene);
         this.setTitle("Clients");
         this.show();

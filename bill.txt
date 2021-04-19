@@ -1,7 +1,5 @@
 Order bill
-Client: Pop Raluca Alexandra
+Client: Borza Ioana
 Products:
-Pro Filter Foundation x 1, 110.0 RON
-Match Stix Shimmer Skinstick x 2, 180.0 RON
-Lash Sensational Mascara x 1, 55.0 RON
-Total: 345 RON
+Hoola Bronzer x 1, 70.5 RON
+Total: 70.5 RON

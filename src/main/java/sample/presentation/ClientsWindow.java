@@ -249,9 +249,27 @@ public class ClientsWindow extends Stage{
      */
     @FXML
     void clickBackButton(ActionEvent event) {
+        clientNotFoundLabelUpdate.setVisible(false);
+        clientNotFoundLabel.setVisible(false);
+        clientNotFoundLabelDelete.setVisible(false);
+        findIdTextField.clear();
+        clearAllFields();
         main.setScene(menuScene);
     }
-
+    private void clearAllFields(){
+        addNameTextField.clear();
+        addAddressTextField.clear();
+        addEmailTextField.clear();
+        deleteNameTextField.clear();
+        updateIdTextField.clear();
+        updateNameTextField.clear();
+        updateEmailTextField.clear();
+        updateAddressTextField.clear();
+        findNameTextField.clear();
+        findIdTextField.clear();
+        findEmailTextField.clear();
+        findAddressTextField.clear();
+    }
     /**
      * This method opens a new TableSceneClient window that displays the contents of the Client table
      * @param event  an object of type ActionEvent

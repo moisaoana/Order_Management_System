@@ -41,7 +41,7 @@ public class OrdersWindow extends Stage {
     ObservableList<Client> clientsObservableList = FXCollections.observableArrayList();
     List<Client> selectedCustomer=new ArrayList<>();
     boolean firstClient=true;
-    int sum=0;
+    double sum=0;
     /**
      * The constructor that initializes the window
      */
@@ -70,7 +70,18 @@ public class OrdersWindow extends Stage {
         //Back Button
         Button backButton=new Button("Back");
         styleButton(backButton);
-        backButton.setOnAction((ActionEvent event) -> this.close());
+        backButton.setOnAction((ActionEvent event)->{
+            for(Product product: chosenProductsObservableList){
+                product.setQuantity(product.getQuantity() + 1);
+                ProductBLL productBLL = new ProductBLL();
+                productBLL.updateProduct(product);
+            }
+            chosenProductsObservableList.clear();
+            totalTextField.clear();
+            chosenClientTextField.clear();
+            selectedCustomer.clear();
+            this.close();
+        });
         //Order Button
         Button orderButton=new Button("Order");
         styleButton(orderButton);
@@ -250,7 +261,7 @@ public class OrdersWindow extends Stage {
                             if (product.getQuantity() != 0) {
                                 chosenProductsObservableList.add(product);
                                 sum += product.getPrice();
-                                totalTextField.setText(Integer.toString(sum));
+                                totalTextField.setText(Double.toString(sum));
                                 product.setQuantity(product.getQuantity() - 1);
                                 ProductBLL productBLL = new ProductBLL();
                                 productBLL.updateProduct(product);
@@ -295,7 +306,7 @@ public class OrdersWindow extends Stage {
                             Product product = getTableView().getItems().get(getIndex());
                             chosenProductsObservableList.remove(product);
                             sum -= product.getPrice();
-                            totalTextField.setText(Integer.toString(sum));
+                            totalTextField.setText(Double.toString(sum));
                             product.setQuantity(product.getQuantity() + 1);
                             ProductBLL productBLL = new ProductBLL();
                             productBLL.updateProduct(product);

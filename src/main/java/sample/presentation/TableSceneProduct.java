@@ -27,7 +27,7 @@ public class TableSceneProduct extends Stage {
         productBLL.displayTable(tableView,list,observableList);
         Scene scene = new Scene(tableView);
         this.setHeight(400);
-        this.setWidth(700);
+        this.setWidth(1000);
         this.setScene(scene);
         this.setTitle("Products");
         this.show();

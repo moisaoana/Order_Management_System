@@ -164,8 +164,14 @@ public class ProductsWindow {
     void clickBackButton(ActionEvent event) {
         productNotFoundLabel.setVisible(false);
         productNotFoundLabelDelete.setVisible(false);
+        productNotFoundLabelUpdate.setVisible(false);
         findIdTextField.clear();
         clearAllFieldsFind();
+        clearAllFieldsAdd();
+        clearAllFieldsUpdate();
+        findIdTextField.clear();
+        updateIdTextField.clear();
+        deleteNameTextField.clear();
         main.setScene(menuScene);
     }
     /**

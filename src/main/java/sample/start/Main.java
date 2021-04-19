@@ -5,19 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.businessLayer.ClientBLL;
-import sample.businessLayer.ProductBLL;
-import sample.dataAccessLayer.ClientDAO;
-import sample.model.Client;
-import sample.model.Product;
 import sample.presentation.ClientsWindow;
 import sample.presentation.Controller;
 import sample.presentation.ProductsWindow;
-
-import java.awt.*;
 import java.io.File;
 import java.net.URL;
-import java.util.Random;
+/**
+ * @author Moisa Oana Miruna
+ * @version 1.0
+ * @since 22.04.2021
+ * The main class of the application
+ */
 
 public class Main extends Application {
     Stage window;
