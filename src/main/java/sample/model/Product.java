@@ -25,7 +25,7 @@ public class Product {
      * @param price the price of the product
      * @param brand the brand of the product
      * @param type the type of the product
-     * @param quantity the quanity of the product
+     * @param quantity the quantity of the product
      */
     public Product(int ID,String name,double price,String brand,String type,int quantity){
         this.ID=ID;
@@ -35,7 +35,15 @@ public class Product {
         this.brand=brand;
         this.type=type;
     }
-    /**Constructor without the id*/
+
+    /**
+     * Constructor without the id
+     * @param name the name of the product
+     * @param price the price of the product
+     * @param brand the brand of the product
+     * @param type the type of the product
+     * @param quantity the quantity of the product
+     */
     public Product(String name,double price,String brand,String type,int quantity){
         this.name=name;
         this.price=price;

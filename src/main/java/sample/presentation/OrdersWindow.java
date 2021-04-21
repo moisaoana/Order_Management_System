@@ -54,7 +54,7 @@ public class OrdersWindow extends Stage {
         Text titleCart=new Text("---------My cart---------");
         styleText(titleCart,20);
         //Choose Client
-        Button rechooseClient=new Button("Re-choose client");
+        Button rechooseClient=new Button("Refresh client");
         styleButton(rechooseClient);
         Text clientLabel=new Text("Chosen client: ");
         styleText(clientLabel,15);

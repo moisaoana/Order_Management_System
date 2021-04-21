@@ -2,6 +2,7 @@ package sample.businessLayer;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import sample.dataAccessLayer.OrderDAO;
 import sample.dataAccessLayer.ProductDAO;
 import sample.model.Product;
 import sample.presentation.ErrorWindow;
@@ -46,7 +47,9 @@ public class ProductBLL {
      * @param product the object of type Product to be deleted
      */
     public void deleteProduct(Product product){
-        productDAO.deleteElement(product.getID());
+        OrderDAO orderDAO=new OrderDAO();
+        orderDAO.deleteElement(product.getID(),"productId");
+        productDAO.deleteElement(product.getID(),"id");
     }
 
     /**

@@ -3,6 +3,7 @@ package sample.businessLayer;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import sample.dataAccessLayer.ClientDAO;
+import sample.dataAccessLayer.OrderDAO;
 import sample.model.Client;
 import sample.presentation.ErrorWindow;
 import java.util.List;
@@ -44,7 +45,9 @@ public class ClientBLL {
      * @param client the object of type Client to be deleted
      */
     public void deleteClient(Client client){
-        clientDAO.deleteElement(client.getID());
+        OrderDAO orderDAO=new OrderDAO();
+        orderDAO.deleteElement(client.getID(),"clientId");
+        clientDAO.deleteElement(client.getID(),"id");
     }
 
     /**

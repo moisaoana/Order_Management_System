@@ -29,7 +29,13 @@ public class Client {
         this.address=address;
         this.email=email;
     }
-    /** Constructor without id*/
+
+    /**
+     * Constructor without id
+     * @param name client's full name
+     * @param address client's full address
+     * @param email client's email
+     */
     public Client(String name,String address,String email){
         this.name=name;
         this.address=address;

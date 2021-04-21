@@ -72,6 +72,7 @@ public class AbstractDAO <T>{
         stringBuilder.append(")");
         return stringBuilder.toString();
     }
+
     private String createDeleteQuery(String field){
         StringBuilder stringBuilder=new StringBuilder();
         stringBuilder.append("DELETE FROM ");
@@ -170,10 +171,10 @@ public class AbstractDAO <T>{
      * Method for deleting an element from a table from the database
      * @param id an int representing the id of the element to be deleted
      */
-    public void deleteElement(int id){
+    public void deleteElement(int id,String field){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        String query=createDeleteQuery("id");
+        String query=createDeleteQuery(field);
         try{
             connection= ConnectionFactory.getConnection();
             preparedStatement=connection.prepareStatement(query);
@@ -181,6 +182,7 @@ public class AbstractDAO <T>{
            preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             LOGGER.log(Level.WARNING,type.getName()+"delete",throwables.getMessage());
+            System.out.println(throwables.getMessage());
         }finally{
             ConnectionFactory.close(preparedStatement);
             ConnectionFactory.close(connection);
@@ -311,7 +313,7 @@ public class AbstractDAO <T>{
     public void displayTable(TableView<T> tableView, List<T>list, ObservableList<T> observableList ){
         for( int i=0;i<type.getDeclaredFields().length;i++) {
             Field field=type.getDeclaredFields()[i];
-            TableColumn<T,Object> column = new TableColumn(field.getName());
+            TableColumn<T,Object> column = new TableColumn<T,Object>(field.getName());
             column.setCellValueFactory(new PropertyValueFactory<>(field.getName()));
             column.setStyle("-fx-background-color: aliceblue;");
             tableView.getColumns().add(column);
