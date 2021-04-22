@@ -170,6 +170,7 @@ public class AbstractDAO <T>{
     /**
      * Method for deleting an element from a table from the database
      * @param id an int representing the id of the element to be deleted
+     * @param field a String representing the field based on which the element is deleted
      */
     public void deleteElement(int id,String field){
         Connection connection = null;

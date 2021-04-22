@@ -1,10 +1,6 @@
 Order bill
-Client: Fabian Khilsten
+Client: Dita Miruna
 Products:
-Lash Sensational Mascara x 1, 55.0 RON
-Pro Filter Foundation x 1, 110.0 RON
-Match Stix Shimmer Skinstick x 1, 90.0 RON
 Teint Idole Ultra Wear x 1, 150.0 RON
 Ultra Matte Liquid Lipstick x 1, 45.5 RON
-Voyager Soft Sun Palette x 2, 230.0 RON
-Total: 680.5 RON
+Total: 195.5 RON

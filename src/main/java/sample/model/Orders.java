@@ -32,7 +32,14 @@ public class Orders {
         this.productId=productId;
         this.quantity=quantity;
     }
-    /** Constructor without id*/
+
+    /**
+     * Constructor without id
+     * @param orderId the id of the order
+     * @param clientId the id of the client who places the order
+     * @param productId the id of the product ordered by the client
+     * @param quantity the quantity of the ordered product
+     */
     public Orders(int orderId, int clientId, int productId, int quantity){
         this.orderId=orderId;
         this.clientId=clientId;

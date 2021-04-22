@@ -57,10 +57,19 @@ public class Main extends Application {
         window.setTitle("Order Management");
         window.show();
     }
+
+    /**
+     * Method that sets the current scene of the application
+     * @param scene the scene to be set
+     */
     public void setScene(Scene scene){
         window.setScene(scene);
     }
 
+    /**
+     * Start the application
+     * @param args arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
